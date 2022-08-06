@@ -1,0 +1,81 @@
+<!--우측 상단 헤더 영역 -->
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Board</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/board/list">게시판</a>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+<!--우측 콘텐츠 영역 -->
+<div class="wrapper wrapper-content">
+    <!--검색 영역 -->
+    <div class="ibox-content m-b-sm border-bottom">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label" for="OrderNo">관리자명</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label" for="OrderName">아이디</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label" for="MobileNo">게시 여부</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-primary">조회</button>
+            <a href="/" class="btn btn-info">신규</a>
+        </div>
+    </div>
+
+    <!--목록 영역 -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="table-responsive">
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="10%">번호</th>
+                                    <th width="40%">제목</th>
+                                    <th width="10%">조회수</th>
+                                    <th width="10%">IP</th>
+                                    <th width="10%">게시 여부</th>
+                                    <th width="10%">작성자</th>
+                                    <th width="10%">작성일</th>
+                                </tr>
+                            </thead>
+                            <tbody class="hoverTblBody">
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<script>
+    console.log("게시글 목록 페이지 로딩 완료");
+</script>
