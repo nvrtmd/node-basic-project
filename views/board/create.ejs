@@ -1,12 +1,12 @@
 <!--우측 콘텐츠 영역 -->
 <div class="wrapper wrapper-content">
     <div class="ibox-content m-b-sm border-bottom">
-        <form action="/board/create" method="post">
+        <form id="postForm" action="/board/create" method="post">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label class="control-label">제목</label>
-                        <input type="text" class="form-control">
+                        <input id="postTitle" name="postTitle" type="text" class="form-control">
                     </div>
                 </div>
             </div>
@@ -15,7 +15,7 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label class="control-label">내용</label>
-                        <textarea class="form-control" rows="10" cols="5"></textarea>
+                        <textarea name="postContents" class="form-control" rows="10" cols="5"></textarea>
                     </div>
                 </div>
             </div>
@@ -24,9 +24,9 @@
                 <div class="col-sm-12">
                     <label class="control-label">게시 여부</label>
                     <div class="form-group" style="width: 30%">
-                        <select id="displayyn" class="form-control">
-                            <option value="true">게시함</option>
-                            <option value="false">게시안함</option>
+                        <select id="postDisplay" name="postDisplay" class="form-control">
+                            <option value=true>게시함</option>
+                            <option value=false>게시안함</option>
                         </select>
                     </div>
                 </div>
@@ -39,3 +39,21 @@
         </form>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        console.log("page loading completed");
+    });
+
+    $("#postForm").submit(function () {
+
+        if ($("#postTitle").val() == "") {
+            alert("제목을 입력해주세요.");
+            $("#postTitle").focus();
+            return false;
+        }
+        return true;
+    });
+
+
+</script>
