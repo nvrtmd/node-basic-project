@@ -3,7 +3,8 @@ const db = require("../models");
 var router = express.Router();
 
 router.get("/list", async (req, res) => {
-  res.render("board/list");
+  const postList = await db.Post.findAll();
+  res.render("board/list", { postList });
 });
 
 router.get("/create", async (req, res) => {

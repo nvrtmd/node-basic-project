@@ -46,29 +46,25 @@
                                 </tr>
                             </thead>
                             <tbody class="hoverTblBody">
-                                <tr>
-                                    <td>1</td>
-                                    <td>
-                                        <a href="/board/modify/1">
-                                            title1
-                                        </a>
-                                    </td>
-                                    <td>100</td>
-                                    <td>Y</td>
-                                    <td>2022.02.11</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>
-                                        <a href="/board/modify/2">
-                                            title2
-                                        </a>
-                                    </td>
-                                    <td>200</td>
-                                    <td>N</td>
-                                    <td>2022.03.11</td>
-                                </tr>
-
+                                <% for(let i=0; i < postList.length; i++) { %>
+                                    <tr>
+                                        <td>
+                                            <%=postList[i].post_id%>
+                                        </td>
+                                        <td>
+                                            <%=postList[i].post_title%>
+                                        </td>
+                                        <td>
+                                            <%=postList[i].post_views%>
+                                        </td>
+                                        <td>
+                                            <%=postList[i].post_display%>
+                                        </td>
+                                        <td>
+                                            <%=postList[i].post_register_date%>
+                                        </td>
+                                    </tr>
+                                    <% } %>
                             </tbody>
                         </table>
 
