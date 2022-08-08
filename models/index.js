@@ -20,6 +20,6 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 // 게시글 모델 모듈 파일 참조 및 db 속성 정의
-// db.Post = require("./post.js")(sequelize, Sequelize);
+db.Post = require("./post.js")(sequelize, Sequelize);
 
 module.exports = db;
