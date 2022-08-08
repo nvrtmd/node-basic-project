@@ -45,4 +45,22 @@ router.get("/modify/:postId", async (req, res) => {
   res.render("board/modify", { postData });
 });
 
+router.post("/modify/:postId", async (req, res) => {
+  const postId = req.params.postId;
+
+  const updatePostData = {
+    board_id: 1,
+    post_title: req.body.postTitle,
+    post_contents: req.body.postContents,
+    writer_ip_address: req.ip,
+    post_display: JSON.parse(req.body.postDisplay),
+    post_register_date: Date.now(),
+    post_register_user_name: "anonymous",
+  };
+
+  await db.Post.update(updatePostData, { where: { post_id: postId } });
+
+  res.redirect("/board/list");
+});
+
 module.exports = router;
