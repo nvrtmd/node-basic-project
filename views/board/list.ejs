@@ -61,7 +61,7 @@
                                             <%=postList[i].post_display%>
                                         </td>
                                         <td>
-                                            <%=postList[i].post_register_date%>
+                                            <%=moment(postList[i].post_register_date).format('YY-MM-DD HH:mm')%>
                                         </td>
                                     </tr>
                                     <% } %>

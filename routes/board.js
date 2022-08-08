@@ -1,10 +1,11 @@
 var express = require("express");
 const db = require("../models");
 var router = express.Router();
+var moment = require("moment");
 
 router.get("/list", async (req, res) => {
   const postList = await db.Post.findAll();
-  res.render("board/list", { postList });
+  res.render("board/list", { postList, moment });
 });
 
 router.get("/create", async (req, res) => {
