@@ -5,7 +5,10 @@ var moment = require("moment");
 
 router.get("/list", async (req, res) => {
   const postList = await db.Post.findAll();
-  res.render("board/list", { postList, moment });
+  res.render("board/list", {
+    postList: postList.filter((post) => post.post_display),
+    moment,
+  });
 });
 
 router.get("/create", async (req, res) => {
