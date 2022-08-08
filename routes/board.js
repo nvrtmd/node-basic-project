@@ -32,4 +32,8 @@ router.post("/create", async (req, res) => {
   res.redirect("/board/list");
 });
 
+router.get("/modify/:postId", async (req, res) => {
+  res.render("board/modify");
+});
+
 module.exports = router;
