@@ -34,8 +34,14 @@ router.post("/create", async (req, res) => {
 
 router.get("/modify/:postId", async (req, res) => {
   const postId = req.params.postId;
-
   const postData = await db.Post.findOne({ where: { post_id: postId } });
+
+  const updatePostViews = {
+    post_views: postData.post_views + 1,
+  };
+
+  await db.Post.update(updatePostViews, { where: { post_id: postId } });
+
   res.render("board/modify", { postData });
 });
 
