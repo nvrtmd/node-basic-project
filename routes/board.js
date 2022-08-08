@@ -33,7 +33,10 @@ router.post("/create", async (req, res) => {
 });
 
 router.get("/modify/:postId", async (req, res) => {
-  res.render("board/modify");
+  const postId = req.params.postId;
+
+  const postData = await db.Post.findOne({ where: { post_id: postId } });
+  res.render("board/modify", { postData });
 });
 
 module.exports = router;

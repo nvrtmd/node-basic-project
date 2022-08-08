@@ -6,7 +6,8 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label class="control-label">제목</label>
-                        <input id="postTitle" name="postTitle" type="text" class="form-control">
+                        <input id="postTitle" name="postTitle" value="<%=postData.post_title%>" type="text"
+                            class="form-control">
                     </div>
                 </div>
             </div>
@@ -15,7 +16,8 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label class="control-label">내용</label>
-                        <textarea name="postContents" class="form-control" rows="10" cols="5"></textarea>
+                        <textarea name="postContents" class="form-control" rows="10"
+                            cols="5"><%=postData.post_contents%></textarea>
                     </div>
                 </div>
             </div>
