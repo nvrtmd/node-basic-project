@@ -63,4 +63,10 @@ router.post("/modify/:postId", async (req, res) => {
   res.redirect("/board/list");
 });
 
+router.get("/delete", async (req, res) => {
+  const postId = req.query.id;
+  const deletePost = await db.Post.destroy({ where: { post_id: postId } });
+  res.redirect("/board/list");
+});
+
 module.exports = router;
