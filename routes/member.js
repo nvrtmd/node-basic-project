@@ -37,14 +37,24 @@ router.post("/normal-signIn", async (req, res, next) => {
     );
 
     if (isCorrectPassword) {
-      res.redirect("/board/list");
+      req.session.isSignIn = true;
+      req.session.signInUser = {
+        userSeq: memberData.id,
+        userId: memberData.user_id,
+        userName: memberData.user_name,
+        userPhone: memberData.user_phone,
+      };
+      req.session.save(() => {
+        res.redirect("/board/list");
+      });
     } else {
       signInResult = "비밀번호가 일치하지 않습니다.";
+      res.render("member/signIn", { signInResult });
     }
   } else {
     signInResult = "아이디가 존재하지 않습니다.";
+    res.render("member/signIn", { signInResult });
   }
-  res.render("member/signIn", { signInResult });
 });
 
 module.exports = router;
