@@ -5,6 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var expressLayouts = require("express-ejs-layouts");
 var sequelize = require("./models/index.js").sequelize;
+var session = require("express-session");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -13,6 +14,19 @@ var memberRouter = require("./routes/member");
 
 var app = express();
 sequelize.sync();
+
+app.use(
+  session({
+    resave: false,
+    saveUninitialized: true,
+    secret: "testSession",
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 1000 * 60 * 5,
+    },
+  })
+);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
