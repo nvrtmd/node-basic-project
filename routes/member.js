@@ -3,7 +3,7 @@ const db = require("../models");
 var router = express.Router();
 
 router.get("/signIn", async (req, res, next) => {
-  res.render("member/signIn", { loginResult: "" });
+  res.render("member/signIn", { signInResult: "" });
 });
 
 module.exports = router;
