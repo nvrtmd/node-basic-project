@@ -8,6 +8,7 @@ var sequelize = require("./models/index.js").sequelize;
 var session = require("express-session");
 var passport = require("passport");
 var flash = require("connect-flash");
+require("dotenv").config();
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
