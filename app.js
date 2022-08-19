@@ -7,6 +7,7 @@ var expressLayouts = require("express-ejs-layouts");
 var sequelize = require("./models/index.js").sequelize;
 var session = require("express-session");
 var passport = require("passport");
+var flash = require("connect-flash");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -14,6 +15,9 @@ var boardRouter = require("./routes/board");
 var memberRouter = require("./routes/member");
 
 var app = express();
+
+app.use(flash());
+
 sequelize.sync();
 
 const passportConfig = require("./passport/index.js");
