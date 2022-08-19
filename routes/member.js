@@ -2,6 +2,7 @@ var express = require("express");
 const db = require("../models");
 var router = express.Router();
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 
 router.get("/signUp", async (req, res, next) => {
   res.render("member/signUp");
@@ -55,6 +56,28 @@ router.post("/normal-signIn", async (req, res, next) => {
     signInResult = "아이디가 존재하지 않습니다.";
     res.render("member/signIn", { signInResult });
   }
+});
+
+router.post("/passport-signIn", async (req, res, next) => {
+  passport.authenticate("local", (authError, user, info) => {
+    if (authError) {
+      console.error(authError);
+      return next(authError);
+    }
+
+    if (!user) {
+      req.flash("loginError", info.message);
+      return res.redirect("/member/signIn");
+    }
+
+    return req.login(user, (loginError) => {
+      if (loginError) {
+        console.error(loginError);
+        return next(loginError);
+      }
+      return res.redirect("/board/list");
+    });
+  })(req, res, next);
 });
 
 module.exports = router;
