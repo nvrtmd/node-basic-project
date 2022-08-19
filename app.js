@@ -6,6 +6,7 @@ var logger = require("morgan");
 var expressLayouts = require("express-ejs-layouts");
 var sequelize = require("./models/index.js").sequelize;
 var session = require("express-session");
+var passport = require("passport");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -14,6 +15,10 @@ var memberRouter = require("./routes/member");
 
 var app = express();
 sequelize.sync();
+
+const passportConfig = require("./passport/index.js");
+
+passportConfig(passport);
 
 app.use(
   session({
@@ -27,6 +32,9 @@ app.use(
     },
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
