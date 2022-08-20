@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const { isSignedIn, isNotSignedIn } = require("./middlewares");
 
-router.get("/signUp", async (req, res, next) => {
+router.get("/signUp", isNotSignedIn, async (req, res, next) => {
   res.render("member/signUp");
 });
 
@@ -21,7 +21,7 @@ router.post("/signUp", async (req, res, next) => {
   res.redirect("/board/list");
 });
 
-router.get("/signIn", async (req, res, next) => {
+router.get("/signIn", isNotSignedIn, async (req, res, next) => {
   res.render("member/signIn", { signInResult: "" });
 });
 
