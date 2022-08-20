@@ -3,6 +3,7 @@ const db = require("../models");
 var router = express.Router();
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
+const { isSignedIn, isNotSignedIn } = require("./middlewares");
 
 router.get("/signUp", async (req, res, next) => {
   res.render("member/signUp");
@@ -78,6 +79,11 @@ router.post("/passport-signIn", async (req, res, next) => {
       return res.redirect("/board/list");
     });
   })(req, res, next);
+});
+
+router.get("/profile", isSignedIn, async (req, res, next) => {
+  const userData = req.session.passport.user;
+  res.render("member/profile", { userData });
 });
 
 module.exports = router;
