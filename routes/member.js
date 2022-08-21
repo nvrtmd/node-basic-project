@@ -4,6 +4,7 @@ var router = express.Router();
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const { isSignedIn, isNotSignedIn } = require("./middlewares");
+const jwt = require("jsonwebtoken");
 
 router.get("/signUp", isNotSignedIn, async (req, res, next) => {
   res.render("member/signUp");
@@ -82,8 +83,35 @@ router.post("/passport-signIn", async (req, res, next) => {
 });
 
 router.get("/profile", isSignedIn, async (req, res, next) => {
-  const userData = req.session.passport.user;
-  res.render("member/profile", { userData });
+  const memberData = req.session.passport.user;
+  res.render("member/profile", { memberData });
+});
+
+router.get("/jwtGenerator", async (req, res, next) => {
+  res.render("member/jwtGenerator");
+});
+
+router.post("/jwtGenerator", async (req, res, next) => {
+  const userId = req.body.userId;
+  const userName = req.body.userName;
+  const userPhone = req.body.userPhone;
+
+  const memberData = {
+    userId,
+    userName,
+    userPhone,
+  };
+
+  const token = jwt.sign(memberData, process.env.JWT_SECRET_KEY, {
+    expiresIn: "24h",
+    issuer: "YUZAMIN",
+  });
+
+  const result = {
+    token,
+  };
+
+  res.json(result);
 });
 
 module.exports = router;
