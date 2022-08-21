@@ -114,4 +114,11 @@ router.post("/jwtGenerator", async (req, res, next) => {
   res.json(result);
 });
 
+router.get("/jwtDecoder", async (req, res, next) => {
+  const jwtToken = req.query.jwt;
+
+  const jsonData = jwt.verify(jwtToken, process.env.JWT_SECRET_KEY);
+  res.json(jsonData);
+});
+
 module.exports = router;
